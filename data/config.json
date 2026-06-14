@@ -2,9 +2,9 @@
   "version": "1.0",
   "ai": {
     "provider": "openai",
-    "base_url": "https://dashscope.aliyuncs.com/compatible-mode/v1",
-    "model": "qwen-max",
-    "api_key_env": "DASHSCOPE_API_KEY",
+    "base_url": "https://api.deepseek.com/v1",
+    "model": "deepseek-chat",
+    "api_key_env": "DEEPSEEK_API_KEY",
     "temperature": 0.3,
     "max_tokens": 4096,
     "throttle_sec": 0,
@@ -25,20 +25,49 @@
     "github": [
       {
         "type": "user_events",
-        "username": "torvalds",
+        "username": "karpathy",
+        "enabled": true
+      },
+      {
+        "type": "user_events",
+        "username": "jeremyphoward",
         "enabled": true
       },
       {
         "type": "repo_releases",
-        "owner": "astral-sh",
-        "repo": "uv",
+        "owner": "langchain-ai",
+        "repo": "langchain",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "run-llama",
+        "repo": "llama_index",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "huggingface",
+        "repo": "transformers",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "openai",
+        "repo": "openai-cookbook",
+        "enabled": true
+      },
+      {
+        "type": "repo_releases",
+        "owner": "n8n-io",
+        "repo": "n8n",
         "enabled": true
       }
     ],
     "hackernews": {
       "enabled": true,
-      "fetch_top_stories": 20,
-      "min_score": 100
+      "fetch_top_stories": 30,
+      "min_score": 80
     },
     "rss": [
       {
@@ -48,10 +77,70 @@
         "category": "ai-tools"
       },
       {
-        "name": "LWN.net (subscriber full-text)",
-        "url": "https://lwn.net/headlines/full_text?key=${LWN_KEY}",
-        "enabled": false,
-        "category": "linux"
+        "name": "Lil'Log (Lilian Weng)",
+        "url": "https://lilianweng.github.io/feed.xml",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "Sebastian Raschka",
+        "url": "https://sebastianraschka.com/feed.xml",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "Hugging Face Blog",
+        "url": "https://huggingface.co/blog/feed.xml",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "Stability AI Blog",
+        "url": "https://stability.ai/feed.rss",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "Google AI Blog",
+        "url": "https://blog.google/technology/ai/rss/",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "OpenAI Blog",
+        "url": "https://openai.com/blog/rss.xml",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "Anthropic Blog",
+        "url": "https://www.anthropic.com/feed.xml",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "Meta AI Blog",
+        "url": "https://ai.meta.com/blog/rss.xml",
+        "enabled": true,
+        "category": "ai-ml"
+      },
+      {
+        "name": "机器之心",
+        "url": "https://www.jiqizhixin.com/rss",
+        "enabled": true,
+        "category": "ai-news"
+      },
+      {
+        "name": "量子位",
+        "url": "https://www.qbitai.com/feed",
+        "enabled": true,
+        "category": "ai-news"
+      },
+      {
+        "name": "ArXiv ML (cs.AI)",
+        "url": "http://export.arxiv.org/rss/cs.AI",
+        "enabled": true,
+        "category": "research"
       }
     ],
     "reddit": {
@@ -62,23 +151,55 @@
           "enabled": true,
           "sort": "hot",
           "time_filter": "day",
+          "fetch_limit": 20,
+          "min_score": 30
+        },
+        {
+          "subreddit": "LocalLLaMA",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 20,
+          "min_score": 20
+        },
+        {
+          "subreddit": "artificial",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
+          "fetch_limit": 15,
+          "min_score": 30
+        },
+        {
+          "subreddit": "ChatGPT",
+          "enabled": true,
+          "sort": "hot",
+          "time_filter": "day",
           "fetch_limit": 15,
           "min_score": 50
         }
       ],
-      "users": [
-        {
-          "username": "iamthatis",
-          "enabled": true,
-          "sort": "new",
-          "fetch_limit": 10
-        }
-      ],
+      "users": [],
       "fetch_comments": 5
+    },
+    "telegram": {
+      "enabled": true,
+      "channels": [
+        {
+          "channel": "ai_newz",
+          "enabled": true,
+          "fetch_limit": 20
+        },
+        {
+          "channel": "aibytes",
+          "enabled": true,
+          "fetch_limit": 20
+        }
+      ]
     },
     "twitter": {
       "enabled": false,
-      "users": ["karpathy", "ylecun"],
+      "users": ["karpathy", "ylecun", "ai_zona", "goodside"],
       "fetch_limit": 10,
       "fetch_reply_text": false,
       "max_replies_per_tweet": 3,

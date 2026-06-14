@@ -9,7 +9,7 @@ jobs:
   daily-summary:
     runs-on: ubuntu-latest
     permissions:
-      contents: write  # 需要提交权限
+      contents: write
 
     steps:
       - name: Checkout code
@@ -28,20 +28,18 @@ jobs:
 
       - name: Run Horizon
         env:
-          # 将密钥映射到环境变量，供 config.json 使用
+          # DeepSeek (当前使用的 AI 提供商)
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          # 备份 AI 提供商（可选）
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
-          DASHSCOPE_API_KEY: ${{ secrets.DASHSCOPE_API_KEY }}
-          LWN_KEY: ${{ secrets.LWN_KEY }}
+          # GitHub 请求限流
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: uv run horizon --hours 24
 
       - name: Prepare docs for Jekyll
         run: |
-          # 确保 docs/_posts 目录存在
           mkdir -p docs/_posts
-          
-          # 将生成的 Markdown 文件复制到 docs/_posts
           if [ -d "data/summaries" ]; then
             for file in data/summaries/*.md; do
               if [ -f "$file" ]; then
@@ -58,7 +56,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
-          keep_files: true  # 保留 gh-pages 分支上的历史日报
+          keep_files: true
           commit_message: "📝 Daily Summary: ${{ env.DATE }}"
           publish_branch: gh-pages
           enable_jekyll: true
